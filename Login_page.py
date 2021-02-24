@@ -8,9 +8,17 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
+
+
+def cleanButton(self):
+    self.nameEntry.delete()
+    self.AddressEntry.delete()
+
+
 class register:
     def __init__(self):
 
+        self.cleanButton = None
         self.windowDemo = Tk()
         self.windowDemo.title("RegistrationDemo")
         self.windowDemo.configure(background = "dodgerblue")
@@ -28,7 +36,11 @@ class register:
         self.AddressEntry.place(x=100, y=50)
 
         btn1 = Button(self.windowDemo, text="submit", font="times 10 bold", command=self.submitComm)
-        btn1.place(x=50, y=100)
+        btn1.place(x=50, y=300)
+
+        btn2 = Button(self.windowDemo, text="clear", font="times 10 bold", command=self.cleanButton)
+        btn2.place(x=200, y=300)
+
 
     def submitComm(self):
         username = self.nameEntry.get()
