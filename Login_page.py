@@ -1,5 +1,6 @@
 import mysql.connector
 from tkinter import *
+import tkinter.messagebox
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -11,8 +12,10 @@ mycursor = mydb.cursor()
 
 
 def cleanButton(self):
-    self.nameEntry.delete()
-    self.AddressEntry.delete()
+    global operator
+    operator = ""
+    self.nameEntry.set("")
+    self.AddressEntry.set("")
 
 
 class register:
@@ -21,7 +24,7 @@ class register:
         self.cleanButton = None
         self.windowDemo = Tk()
         self.windowDemo.title("RegistrationDemo")
-        self.windowDemo.configure(background = "dodgerblue")
+        self.windowDemo.configure(background="dodger blue")
         self.windowDemo.geometry("400x450")
 
 
@@ -52,8 +55,7 @@ class register:
         mycursor.execute(myquerry, val)
         mydb.commit()
 
-        print(mycursor.rowcount, "record inserted")
-
+        tkinter.messagebox.showinfo("Success", "You are now registered")
 
 
 wind = register()
